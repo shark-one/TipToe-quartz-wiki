@@ -10,7 +10,7 @@
 > | Status | Alive |
 > 
 
-One of the kids who stumbled into the [[Underground facility|underground facility]] together with [[Ubim Pinata|Ubim]] and [[Didit Gaib|Didit]]. Similar to his close companions, Karma is a school dropout and spend most of his time indulging in his love for Dungeons & Dragons (DND).
+One of the kids who stumbled into the [[Underground facility|underground facility]] together with [[Ubim Pinata|Ubim]] and [[Didit Gaib|Didit]]. Like his close companions, Karma is a school dropout who spends most of his time indulging his love for Dungeons & Dragons (DnD).
 
 # Character Sheet
 <iframe

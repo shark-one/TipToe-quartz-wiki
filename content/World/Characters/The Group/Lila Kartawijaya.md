@@ -10,18 +10,18 @@
 > | Status | Alive |
 > 
 
-One of the kids who stumbles into the [[Underground facility|underground facility]]. Lila together with [[Matthias Chaniago|Matthias]], [[Nidhra Sinaga|Nidhra]], [[Rofiq Junaedi (Idam)|Idam]], and [[Didit Gaib|Didit]] are close friends who share a passion for Dungeons & Dragons (DND).
+One of the kids who stumbled into the [[Underground facility|underground facility]]. Lila, together with [[Matthias Chaniago|Matthias]], [[Nidhra Sinaga|Nidhra]], [[Rofiq Junaedi (Idam)|Idam]], and [[Didit Gaib|Didit]], is one of a group of close friends who share a passion for Dungeons & Dragons (DnD).
 
-Lila is a kid who is interested in blacksmithing. He once spent his weekend practicing blacksmith in which he makes a machete. This machete he then brought to the group's meeting and was ultimately brought to the facility. 
+Lila is a kid with an interest in blacksmithing. He once spent a weekend practicing it, during which he made a machete. He later brought that machete to the group's meeting, and ultimately into the facility. 
 
 # Personality
-Lila sometimes dabble in physical jokes with his peers. One time he together with [[Didit Gaib|Didit]] shoved [[Nidhra Sinaga|Nidhra]] into the metallic door of the facility entrance. In which Lila then feigned ignorance.
+Lila sometimes dabbles in physical jokes with his peers. One time, he and [[Didit Gaib|Didit]] shoved [[Nidhra Sinaga|Nidhra]] into the metallic door of the facility entrance, after which Lila feigned ignorance.
 
 >[!caption|right|300]
 >  <img src="https://media1.tenor.com/m/ft2DxikRKO4AAAAC/not-the.gif"/>
-> Lila feigning ignorance for what happen to Nidhra
+> Lila feigning ignorance for what happened to Nidhra
 
-Lila is also prone to daydreaming. Lila once suddenly went unresponsive in the presence of Matthias, Nidhra, Idam, and Didit. In which the group then had to wait for Lila to gain consciousness. Often times by doing shenanigans such as backflip competition.
+Lila is also prone to daydreaming. He once went unresponsive right in front of Matthias, Nidhra, Idam, and Didit, leaving the group to wait for him to come to — often passing the time with shenanigans like a backflip competition.
 
 >[!caption|right|300]
 > <img src="https://media1.tenor.com/m/mXxKwlxOUcMAAAAd/the-pizza-here.gif"/>
