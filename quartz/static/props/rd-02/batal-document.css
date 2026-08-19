@@ -1,0 +1,523 @@
+/* ============================================================
+   BATAL DOCUMENT SYSTEM
+   Shared stylesheet for TipToe campaign in-world documents
+   (RD-01, RD-02, RD-03, ...). Reuse across all future props.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Oswald:wght@500;600;700&display=swap');
+
+:root {
+  /* -- palette -- */
+  --paper:        #e6ddc4;
+  --paper-shadow: #cdbf9a;
+  --paper-edge:   #b9a97e;
+  --ink:          #2b241d;
+  --ink-faded:    #4d4436;
+  --redact:       #17140f;
+  --stamp-red:    #8a2e24;
+  --stain:        rgba(107, 78, 38, 0.16);
+  --stain-dark:   rgba(70, 48, 20, 0.22);
+  --bg-room:      #14120f;
+
+  --font-type:    'Courier Prime', 'Courier New', monospace;
+  --font-head:    'Oswald', 'Arial Narrow', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body.batal-doc-body {
+  margin: 0;
+  padding: 48px 16px 96px;
+  background: var(--bg-room);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.03), transparent 60%);
+  font-family: var(--font-type);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+}
+
+/* ---------------- PAGE SHELL ---------------- */
+
+.batal-page {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  min-height: 1000px;
+  background: var(--paper);
+  padding: 64px 60px 70px;
+  box-shadow:
+    0 2px 0 rgba(255,255,255,0.15) inset,
+    0 30px 60px rgba(0,0,0,0.55),
+    0 4px 12px rgba(0,0,0,0.4);
+  line-height: 1.72;
+  font-size: 14.5px;
+  color: var(--ink);
+  overflow: hidden;
+}
+
+/* slight per-page rotation for a "stack of scanned paper" feel */
+.batal-page:nth-of-type(odd)  { transform: rotate(-0.35deg); }
+.batal-page:nth-of-type(even) { transform: rotate(0.3deg); }
+
+/* paper grain + foxing stains, layered so no two pages tile identically */
+.batal-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 340px 220px at 8% 12%, var(--stain), transparent 60%),
+    radial-gradient(ellipse 260px 180px at 92% 85%, var(--stain-dark), transparent 55%),
+    radial-gradient(ellipse 180px 140px at 78% 8%, var(--stain), transparent 60%),
+    radial-gradient(ellipse 220px 160px at 15% 95%, var(--stain-dark), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 2px);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+/* subtle noise texture via SVG fractal noise */
+.batal-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* worn/torn edge illusion */
+.batal-page {
+  clip-path: polygon(
+    0% 0.4%, 2% 0%, 40% 0.3%, 70% 0%, 100% 0.5%,
+    99.6% 30%, 100% 60%, 99.5% 100%,
+    60% 99.6%, 30% 100%, 0% 99.7%,
+    0.4% 70%, 0% 40%, 0.3% 15%
+  );
+}
+
+.batal-page-number {
+  position: absolute;
+  bottom: 26px;
+  right: 42px;
+  font-size: 11px;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+}
+
+.batal-page-classified-footer {
+  position: absolute;
+  bottom: 26px;
+  left: 42px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+}
+
+/* ---------------- HEADER / LETTERHEAD ---------------- */
+
+.batal-letterhead {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 18px;
+  margin-bottom: 34px;
+  position: relative;
+  z-index: 1;
+}
+
+.batal-logo {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  object-fit: contain;
+  filter: grayscale(1) contrast(1.1) sepia(0.15);
+}
+
+.batal-logo-placeholder {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 10px;
+  text-align: center;
+  color: var(--ink-faded);
+  line-height: 1.2;
+}
+
+.batal-org-name {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.03em;
+  margin: 0;
+  text-indent: 0;
+}
+
+.batal-org-sub {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  margin: 2px 0 0;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  text-indent: 0;
+}
+
+/* ---------------- COVER PAGE ---------------- */
+
+.batal-cover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.batal-cover .batal-logo,
+.batal-cover .batal-logo-placeholder {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 18px;
+}
+
+.batal-cover-org {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.batal-cover-org-sub {
+  font-family: var(--font-head);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faded);
+  margin: 4px 0 50px;
+}
+
+.batal-doc-type {
+  font-family: var(--font-head);
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  margin-bottom: 6px;
+}
+
+.batal-doc-number {
+  font-size: 14px;
+  margin-bottom: 34px;
+  color: var(--ink-faded);
+}
+
+.batal-classification {
+  display: inline-block;
+  border: 2px solid var(--stamp-red);
+  color: var(--stamp-red);
+  font-family: var(--font-head);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  padding: 5px 16px;
+  transform: rotate(-2deg);
+  margin-bottom: 46px;
+  opacity: 0.85;
+}
+
+.batal-cover-perihal-label {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: var(--ink-faded);
+  margin-bottom: 10px;
+}
+
+.batal-cover .batal-cover-org,
+.batal-cover .batal-cover-org-sub,
+.batal-cover .batal-doc-type,
+.batal-cover .batal-doc-number,
+.batal-cover .batal-cover-perihal-label,
+.batal-cover .batal-cover-title {
+  text-align: center;
+  text-indent: 0;
+}
+
+.batal-cover-title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.5;
+  max-width: 480px;
+  margin-bottom: 56px;
+  letter-spacing: 0.01em;
+}
+
+.batal-cover-meta {
+  font-size: 13.5px;
+  line-height: 1.9;
+  margin-top: auto;
+}
+
+.batal-cover-meta .label {
+  color: var(--ink-faded);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  display: block;
+  margin-top: 22px;
+}
+
+/* ---------------- STAMP ---------------- */
+
+.batal-stamp {
+  position: absolute;
+  top: 130px;
+  right: 40px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--stamp-red);
+  border: 3px solid var(--stamp-red);
+  border-radius: 6px;
+  padding: 8px 18px;
+  transform: rotate(-9deg);
+  opacity: 0.72;
+  mix-blend-mode: multiply;
+  text-align: center;
+  z-index: 2;
+}
+
+.batal-stamp .small {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  margin-top: 2px;
+}
+
+/* ---------------- BODY TEXT ---------------- */
+
+.batal-section-title {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  margin: 0 0 18px;
+  text-indent: 0;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.batal-subsection-title {
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  margin: 26px 0 12px;
+  text-indent: 0;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.batal-page p {
+  margin: 0 0 16px;
+  position: relative;
+  z-index: 1;
+  text-align: justify;
+  text-indent: 2.4em;
+}
+
+.batal-page ol.batal-list,
+.batal-page ul.batal-list {
+  margin: 0 0 16px;
+  padding-left: 26px;
+  position: relative;
+  z-index: 1;
+}
+
+.batal-page li {
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.batal-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.batal-toc-list li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dotted var(--ink-faded);
+  padding: 7px 0;
+  font-size: 15px;
+}
+
+.batal-toc-list .toc-sub {
+  padding-left: 20px;
+  font-size: 13.5px;
+  color: var(--ink-faded);
+}
+
+/* ---------------- REDACTION ---------------- */
+
+.redact {
+  display: inline-block;
+  background: var(--redact);
+  color: transparent;
+  border-radius: 1px;
+  user-select: none;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.3);
+  vertical-align: middle;
+}
+
+/* size utility bars — width tuned per use */
+.redact-xs { width: 2.4em; height: 0.95em; }
+.redact-sm { width: 5em;   height: 0.95em; }
+.redact-md { width: 9em;   height: 0.95em; }
+.redact-lg { width: 15em;  height: 0.95em; }
+.redact-xl { width: 22em;  height: 0.95em; }
+
+.redact-block {
+  display: block;
+  width: 100%;
+  background: var(--redact);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.3);
+  margin: 6px 0;
+}
+
+/* uneven, hand-inked bar edges via clip-path variety */
+.redact-inked-1 { clip-path: polygon(0% 8%, 100% 0%, 100% 92%, 0% 100%); }
+.redact-inked-2 { clip-path: polygon(0% 0%, 100% 6%, 99% 100%, 1% 94%); }
+.redact-inked-3 { clip-path: polygon(1% 4%, 100% 0%, 99% 96%, 0% 100%); }
+
+/* ---------------- SECTION 6 — TOTAL BLACKOUT PAGE ---------------- */
+
+.batal-blackout-page {
+  background: var(--redact) !important;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+.batal-blackout-page::before,
+.batal-blackout-page::after { opacity: 0.12; mix-blend-mode: screen; }
+
+.batal-blackout-heading {
+  height: 26px;
+  width: 55%;
+  background: #000;
+  margin: 0 0 40px;
+}
+
+.batal-blackout-body .redact-block {
+  background: #000;
+  height: 22px;
+  opacity: 0.97;
+}
+
+/* ---------------- FIGURES / PHOTOS ---------------- */
+
+.batal-figure {
+  position: relative;
+  z-index: 1;
+  margin: 8px auto 26px;
+  text-align: center;
+}
+
+.batal-figure img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--ink-faded);
+  filter: sepia(0.12) contrast(1.03);
+}
+
+.batal-figure-caption {
+  font-size: 12.5px;
+  color: var(--ink-faded);
+  margin-top: 10px;
+  font-style: italic;
+  text-align: center;
+  text-indent: 0;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* redacted photo block (Fig 4.2 style) */
+.batal-figure-redacted {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 3;
+  background: var(--redact);
+  margin: 8px auto 0;
+  border: 1px solid var(--ink-faded);
+}
+
+/* ---------------- SIGNATURE BLOCK ---------------- */
+
+.batal-sign-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+  font-size: 13.5px;
+}
+
+.batal-sign-grid .name {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.batal-sign-grid .role {
+  color: var(--ink-faded);
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.batal-sign-line {
+  border-top: 1px solid var(--ink);
+  padding-top: 6px;
+}
+
+/* ---------------- WARNING / DM-ONLY NOTE (not printed, for reference file only) ---------------- */
+
+.dm-note {
+  max-width: 760px;
+  width: 100%;
+  background: #201c16;
+  color: #d9c9a3;
+  font-family: var(--font-head);
+  font-size: 12.5px;
+  padding: 10px 18px;
+  border-left: 4px solid var(--stamp-red);
+  margin-bottom: -30px;
+}
+
+@media print {
+  .dm-note { display: none; }
+  body.batal-doc-body { background: white; padding: 0; gap: 0; }
+  .batal-page { box-shadow: none; page-break-after: always; }
+}
+
+@media (max-width: 640px) {
+  .batal-page { padding: 40px 26px 56px; font-size: 14.5px; }
+  .batal-stamp { top: 90px; right: 20px; font-size: 16px; padding: 6px 12px; }
+}
